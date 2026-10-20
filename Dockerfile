@@ -8,7 +8,7 @@ COPY index.html vite.config.js ./
 COPY src ./src
 RUN npm run build
 
-FROM docker.io/library/nginx:stable-alpine AS runtime
+FROM docker.io/nginxinc/nginx-unprivileged:stable-alpine AS runtime
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
